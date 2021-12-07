@@ -62,6 +62,23 @@ function FicheDePaie() {
     };
 }
 
+//Cette fonction est appelée sur le bouton du formulaire
+//Elle permet de calculer le salaire net et d'afficher les données
+function calculerSalaireNet() {
+    let elemForm = new ElementFormulaire();
+    let elemResult = new ElementResultat();
+    let fDePaie = new FicheDePaie();
+    fDePaie.salaireBrut = elemForm.InputInt('salaireBrut');
+    fDePaie.isBonus = elemForm.InputCheckbox('bonus');
+    fDePaie.isAllocation = elemForm.InputCheckbox('allocation');
+    fDePaie.persACharge = elemForm.InputInt('persACharge');
+    elemResult.TagMontant('salaireBrutFinal', fDePaie.salaireBrut);
+    elemResult.TagMontant('taxeCalculee', fDePaie.getTaxeCalculee());
+    elemResult.TagMontant('assuranceCalculee', fDePaie.getAssurance());
+    elemResult.TagMontant('bonusCalcule', fDePaie.getSupplement());
+    elemResult.TagMontant('salaireNet', fDePaie.getSalaireNet());
+}
+
 function effacer() {
     let elemResult = new ElementResultat();
     let ids = ['salaireBrutFinal','taxeCalculee', 'assuranceCalculee', 'bonusCalcule', 'salaireNet'];
